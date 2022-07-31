@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Exports\IsinExcelExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class IsinExcelExportController
+class IsinExcelExportService implements IsinExport
 {
-    public function __invoke()
+    public function download()
     {
         return Excel::download(new IsinExcelExport(), 'Report.xlsx');
     }

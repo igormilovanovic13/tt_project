@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\IsinExcelExportController;
-use App\Http\Controllers\IsinXmlExportController;
+//use App\Http\Controllers\IsinExcelExportController;
+use App\Http\Controllers\IsinExportController;
+//use App\Http\Controllers\IsinXmlExportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +20,4 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/export/excel', IsinExcelExportController::class);
-Route::get('/export/xml', IsinXmlExportController::class);
+Route::get('/export/{type}', [IsinExportController::class, 'export']);

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Resolvers\RouteExportResolver;
+use App\Services\IsinExport;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(IsinExport::class, function() {
+            return RouteExportResolver::resolveExportByRoute();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 }

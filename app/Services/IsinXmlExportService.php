@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Models\Isin;
-use App\Services\XmlGeneratorService;
 use DOMDocument;
 use Exception;
-use Illuminate\Support\Facades\File;
 
-class IsinXmlExportController
+class IsinXmlExportService implements IsinExport
 {
-    public function __invoke()
+    public function download()
     {
         $data = Isin::with('titleinfodata')->get();
 
