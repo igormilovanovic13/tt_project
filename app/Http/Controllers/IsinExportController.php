@@ -5,7 +5,7 @@ use App\Services\IsinExport;
 
 class IsinExportController
 {
-    public function export(IsinExport $isinExport)
+    public function __invoke(IsinExport $isinExport)
     {
         return $isinExport->download();
     }

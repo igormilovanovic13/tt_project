@@ -20,4 +20,4 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/export/{type}', [IsinExportController::class, 'export']);
+Route::get('/export/{type}', IsinExportController::class);
