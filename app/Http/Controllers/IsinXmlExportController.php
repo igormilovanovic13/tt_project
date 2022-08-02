@@ -18,21 +18,15 @@ class IsinXmlExportController
 
         $xw = XmlGeneratorService::isinXmlGenerator($data);
 
-//        dd($xw);
-
         try {
-            $dom = new DOMDocument('1.0', 'utf-8');
-            $dom->loadXML($xw);
-//            dd(asset('storage/validation_schema.xsd'));
-
-//            dd(Storage::get('public/validation_schema.xsd'));
-            $dom->schemaValidateSource(Storage::get('public/validation_schema.xsd'));
+            tap(new DOMDocument('1.0', 'utf-8'))
+                ->loadXML($xw)
+                ->schemaValidateSource(Storage::get('public/validation_schema.xsd'));
             return response()->streamDownload(function () use ($xw) {
                 echo $xw;
             }, 'Report.xml');
         } catch (Exception $exception) {
-//            throw new ValidationException();
-            echo "File validation failed";
+            return back()->with(['Error' => 'Failed validation!']);
         }
     }
 }
