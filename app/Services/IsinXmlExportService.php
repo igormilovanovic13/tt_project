@@ -22,7 +22,7 @@ class IsinXmlExportService implements IsinExport
                 echo $xw;
             }, 'Report.xml');
         } catch (Exception $exception) {
-            throw new Exception('File validation failed!');
+            return back()->with(['Error' => 'WARNING: XML validation failed!']);
         }
     }
 }
